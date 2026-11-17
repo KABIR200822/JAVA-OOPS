@@ -1,31 +1,41 @@
+class BankAccount {
+    private String number, name;
+    private double balance;
+
+    BankAccount(String number, String name, double balance) {
+        this.number = number;
+        this.name = name;
+        this.balance = balance;
+    }
+
+    void deposit(double amount) {
+        if (amount > 0) balance += amount;
+        else System.out.println("Invalid deposit.");
+    }
+
+    void withdraw(double amount) {
+        if (amount <= 0) System.out.println("Invalid amount.");
+        else if (amount > balance) System.out.println("Insufficient balance.");
+        else balance -= amount;
+    }
+
+    void display() {
+        System.out.println("Account: " + number + "\nHolder: " + name
+                + "\nBalance: " + balance);
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
-        // Create two independent bank accounts
-        BankAccount account1 = new BankAccount("1001", "Aarav Sharma", 5000.00);
-        BankAccount account2 = new BankAccount("1002", "Diya Patel", 8000.00);
+        BankAccount a1 = new BankAccount("1001", "Aarav Sharma", 5000);
+        BankAccount a2 = new BankAccount("1002", "Diya Patel", 8000);
 
-        // Operations on the first account
-        System.out.println("===== Account 1 =====");
-        account1.deposit(1500.00);
-        account1.withdraw(2000.00);
-        account1.displayDetails();
+        a1.deposit(1500);
+        a1.withdraw(2000);
+        a2.deposit(2500);
+        a2.withdraw(12000);
 
-        System.out.println();
-
-        // Operations on the second account
-        System.out.println("===== Account 2 =====");
-        account2.deposit(2500.00);
-        account2.withdraw(12000.00); // Demonstrates insufficient balance
-        account2.displayDetails();
-
-        System.out.println();
-
-        // Display final balances separately
-        System.out.println("===== Final Balances =====");
-        System.out.print("Account 1 - ");
-        account1.checkBalance();
-
-        System.out.print("Account 2 - ");
-        account2.checkBalance();
+        a1.display();
+        a2.display();
     }
 }
